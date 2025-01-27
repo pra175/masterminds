@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacific War</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #2b2b2b;
+            color: #f8f8f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #video-container {
+            width: 75%;
+            max-width: 600px;
+            aspect-ratio: 4/3;
+            background: #111;
+            border: 15px solid #444;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #video-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 15px;
+            background: #444;
+            border-radius: 5px;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 2px solid #000;
+            border-radius: 10px;
+        }
+
+        #controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 75%;
+            max-height: 400px;
+            margin-left: 20px;
+        }
+
+        .control-btn {
+            width: 150px;
+            margin: 10px;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ff5555;
+            color: #fff;
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-btn:hover {
+            background-color: #ff2222;
+            border-color: #ff0000;
+            transform: scale(1.05);
+        }
+
+        .control-btn:active {
+            background-color: #cc0000;
+            border-color: #990000;
+            transform: scale(0.95);
+        }
+
+        #layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="layout">
+    <h1 style="color: white;"><a href="index.html">Back</a></h1>
+    <div id="video-container">
+        <video id="video-player" autoplay controls>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div id="controls">
+        <button class="control-btn" onclick="playVideo(-1)">Previous</button>
+        <button class="control-btn" onclick="playVideo(1)">Next</button>
+        <button class="control-btn" onclick="playVideo(2)">Next Next</button>
+    </div>
+</div>
+
+<script>
+    const videos = [
+        'video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4', 'video5.mp4', 'video6.mp4' // Add more videos here
+    ];
+    let currentVideoIndex = 0;
+
+    const videoPlayer = document.getElementById('video-player');
+
+    function playVideo(offset) {
+        currentVideoIndex = (currentVideoIndex + offset + videos.length) % videos.length;
+        videoPlayer.src = videos[currentVideoIndex];
+        videoPlayer.play();
+    }
+</script>
+
+</body>
+</html>

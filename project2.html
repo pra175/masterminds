@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rashtrapati Bhavan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .navbar {
+      width: 20%;
+      background-color: #8B4513;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 0;
+      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
+      border-radius: 0 10px 10px 0;
+    }
+    .navbar a {
+      color: #FFF8DC;
+      text-decoration: none;
+      padding: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+      border-bottom: 1px solid #704214;
+      transition: background-color 0.3s ease;
+    }
+    .navbar a:hover {
+      background-color: #A0522D;
+    }
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      overflow: auto;
+      padding: 1rem;
+      gap: 1rem;
+      animation: contentFadeIn 0.5s ease-in-out;
+    }
+    #content {
+      width: 50%;
+      padding: 1rem;
+      background-color: #FFF8DC;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+    }
+    #image-area {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      width: 90%;
+      height: 50%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: imageZoom 0.5s ease-in-out;
+    }
+    @keyframes contentFadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes imageZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .navbar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .content-area {
+        flex-direction: column;
+      }
+      #content, #image-area {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="#" onclick="showContent('palace')">Presidential Palace</a>
+    <a href="#" onclick="showContent('garden')">Amrit Udyan</a>
+    <a href="#" onclick="showContent('museum')">Museum</a>
+    <a href="#" onclick="showContent('library')">Library</a>
+    <a href="#" onclick="showContent('hall')">Gantantra Mandap</a>
+    <a href="#" onclick="showContent('banquet')">Banquet Hall</a>
+  </nav>
+
+  <div class="content-area">
+    <div id="content">
+      <h1>Rashtrapati Bhavan</h1>
+      <p>Click the buttons on the left to start exploring.</p>
+    </div>
+    <div id="image-area">
+      <img src="rashtrapati.jpg" alt="Rashtrapati Bhavan" id="main-image">
+    </div>
+  </div>
+
+  <script>
+    const contentData = {
+      palace: {
+        text: `<h1>Welcome to the Presidential Palace</h1><p>'Presidential Palace'; formerly Viceroy's House (1931–1947) and Government House (1947–1950) is the official residence of the President of India at the western end of Rajpath, Raisina Hill in New Delhi. It was constructed during the British Raj.</p>`,
+        img: 'rashtrapati1.jpg'
+      },
+      garden: {
+        text: `<h1>Explore the Amrit Udyan</h1><p><b>Amrit Udyan</b> (meaning: The Garden of the Holy Nectar) is a garden situated at the back of the Rashtrapati Bhavan. Formerly known as the Mughal Gardens, it was rechristened by the Bharatiya Janata Party-led Union Government to Amrit Udyan in January 2023 after the new name was proposed by President Draupadi Murmu as part of the 75th Anniversary of Indian Independence celebrations.The garden incorporates both Mughal and English landscaping styles and feature a great variety of flowers and trees. The Rashtrapati Bhavan gardens are open to the public in February–March every year during Udyanotsav.</p>`,
+        img: 'amritudyan.jpg'
+      },
+      museum: {
+        text: `<h1>Visit the Museum</h1><p>In July 2014, a museum inside Rashtrapati Bhavan was inaugurated by then President of India Pranab Mukherjee. The museum helps visitors to get an inside view of the Rashtrapati Bhavan, its art, architecture and get educated about lives of past presidents. The second phase was inaugurated in 2016 by the President Pranab Mukherjee and the Prime Minister Narendra Modi. The museum has been built under the guidance of Saroj Ghose.</p>`,
+        img: 'museum.jpg'
+      },
+      library: {
+        text: `<h1>Welcome to the Library</h1><p>Known as the Daughter of the Ganatantra Mandap, Rashtrapati Bhavan's Library’ is located at the north-eastern corner of the Bhavan and is accessed through the north staircase. “A circle within a square”, it is said to resemble St Stephen’s Walbrook in London. The Rashtrapati Bhavan library, though a square, is given a circular character by the dome above it, which is supported by eight arches. The Library was built to hold book shelves that were sixty feet high and could fit the corners at right angles. The book shelves, that store a collection of thirty-three thousand books, including two thousand rare books, run along the walls of the library and are not restricted to the corners alone. The oldest book of the Library, A Catalogue of the Original Works of William Hogarth was published in 1795. The twelve pillars that are embellished with the Delhi Order bells on their top make an inner square. Oil on canvas paintings, <i>The Creation of Man</i> and <i>Invention of the Printing Press</i>, adorned with gold leaf frames are placed above the two fireplaces in the library.</p>`,
+        img: 'library.webp'
+      },
+      hall: {
+        text: `<h1>Step into the Gantantra Mandap</h1><p>Gantantra Mandap (formerly: Durbar Hall) is situated directly under the double-dome of the main building. Known as the Throne Room before independence, it had two separate thrones for the Viceroy and Vicereine. Since Indian Independence, a single high chair for the President is kept here under a Belgian glass chandelier hanging from a height of 33 m. The flooring of the hall is made of chocolate-coloured Italian marble. The columns in Gantantra Mandap are made in Delhi Order which combines vertical lines with the motif of a bell. The vertical lines from the column were also used in the frieze around the room, which could not have been done with one of the traditional Greek orders of columns. The columns are made from yellow Jaisalmer marble, with a thick line running along the centre.</p><p>Gantantra Mandap has a capacity of 500 people and it is here in this building that Jawaharlal Nehru took the oath of office of Prime Minister from Lord Mountbatten at 8.30 am on 15 August 1947.</p>`,
+        img: 'ganatantra.jpg'
+      },
+      banquet: {
+        text: `<h1>Banquet Hall</h1><p>The Banquet Hall at Rashtrapati Bhavan, also called the State Dining Room, is a grand 104-foot-long space overlooking Amrit Udyan. Adorned with Burmese teak paneling, 28 teak pilasters, and zardozi panels with gold and silver threads, it epitomizes artistic wealth. The hall features chandeliers, gold-framed oil paintings of Indian Presidents, and a portrait of Mahatma Gandhi. Seating 104 guests, it hosts presidential banquets with meticulous service. Unique protocols include discreet light signals for meal stages and red rose vases to mark vegetarian diners. A musician's gallery adds charm, while the venue reflects Rashtrapati Bhavan’s rich cultural and ceremonial legacy.</p>`,
+        img: 'banquethall.jpg'
+      }
+    };
+
+    function showContent(section) {
+      const content = document.getElementById('content');
+      const image = document.getElementById('main-image');
+
+      // Animate content fade-out
+      content.style.opacity = 0;
+      image.style.opacity = 0;
+
+      setTimeout(() => {
+        // Update content and image
+        content.innerHTML = contentData[section].text;
+        image.src = contentData[section].img;
+
+        // Animate content fade-in
+        content.style.opacity = 1;
+        image.style.opacity = 1;
+      }, 300);
+    }
+  </script>
+</body>
+</html>
